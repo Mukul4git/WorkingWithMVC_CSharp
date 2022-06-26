@@ -22,7 +22,9 @@ namespace COMP2084_MidTerm_NET5.Controllers
         // GET: Jobs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Job.ToListAsync());
+            //Ordered the list by Sector.
+            var applicationDbContext = _context.Job.OrderBy(a=> a.Sector);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Jobs/Details/5
